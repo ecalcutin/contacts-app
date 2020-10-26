@@ -12,7 +12,7 @@ export class UsersController {
     }
 
     @MessagePattern({ cmd: 'getUsers' })
-    async createUser(user: User): Promise<UserModel[]> {
+    async getUsers(): Promise<UserModel[]> {
         return await this.userService.getUsers();
     }
 }

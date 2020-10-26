@@ -17,13 +17,10 @@ export class UserResolver {
         })
     }
 
-    @Query(returns => User)
-    async user() {
-        const users = await this.userMicroservice.send<string>('getUsers', {}).toPromise();
-        return {
-            id: 1,
-            
-        }
+    @Query(returns => [User])
+    async users() {
+        const users = await this.userMicroservice.send<User[]>({ cmd: 'getUsers' }, {}).toPromise();
+        return users;
     }
 
 }
