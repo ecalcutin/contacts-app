@@ -2,8 +2,10 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 
 import { GraphQLModule } from '@nestjs/graphql';
+import { join } from 'path';
 
 import { ENV_SCHEMA } from './env.schema';
+import { UserResolver } from './users/resolvers/user.resolver';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -15,11 +17,11 @@ import { ENV_SCHEMA } from './env.schema';
         abortEarly: true
       }
     }),
-    // GraphQLModule.forRoot({
-    //   playground: true
-    // })
+    GraphQLModule.forRoot({
+      playground: true,
+      autoSchemaFile: join(process.cwd(), 'src/schema.gql')
+    })
   ],
-  controllers: [],
-  providers: [],
+  providers: [UserResolver],
 })
 export class AppModule { }

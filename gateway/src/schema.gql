@@ -1,0 +1,18 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Phone {
+  id: Int!
+  value: String!
+}
+
+type User {
+  id: Int!
+  name: String
+  phones: [Phone!]!
+}
+
+type Query {
+  user: User!
+}
