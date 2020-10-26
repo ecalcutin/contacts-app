@@ -19,11 +19,13 @@ import { AddContactComponent } from './shared/components/add-contact/add-contact
     AppComponent,
     NavbarComponent,
     AddContactComponent,
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MaterialModule
   ],
   providers: [ContactsService],
   bootstrap: [AppComponent]
