@@ -1,11 +1,11 @@
 import { NestFactory } from '@nestjs/core';
-import { MicroserviceOptions, Transport } from '@nestjs/microservices';
+import { TcpOptions, Transport } from '@nestjs/microservices';
 import { AppModule } from './app.module';
 
-const microserviceOpts: MicroserviceOptions = {
+const microserviceOpts: TcpOptions = {
   transport: Transport.TCP,
   options: {
-    port: 8080
+    port: parseInt(process.env.MICROSERVICE_PORT, 10)
   }
 }
 
