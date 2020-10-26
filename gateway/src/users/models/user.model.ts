@@ -1,4 +1,5 @@
-import { Field, Int, ObjectType } from '@nestjs/graphql';
+import { Field, ObjectType } from '@nestjs/graphql';
+
 import { Phone } from './phone.model';
 
 @ObjectType()
