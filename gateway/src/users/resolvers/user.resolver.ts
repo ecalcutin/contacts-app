@@ -1,4 +1,4 @@
-import { Resolver, Query } from "@nestjs/graphql";
+import { Resolver, Query, Mutation, Args } from "@nestjs/graphql";
 import { ClientProxy, ClientProxyFactory, Transport } from "@nestjs/microservices";
 
 import { User } from "../models/user.model";
@@ -19,8 +19,14 @@ export class UserResolver {
 
     @Query(returns => [User])
     async users() {
-        const users = await this.userMicroservice.send<User[]>({ cmd: 'getUsers' }, {}).toPromise();
-        return users;
+        return await this.userMicroservice.send<User[]>({ cmd: 'getUsers' }, {}).toPromise();
+    }
+
+    @Mutation(returns => User)
+    async createUser(
+        @Args('name') name: string
+    ) {
+        return await this.userMicroservice.send<User>({ cmd: 'createUser' }, { name }).toPromise();
     }
 
 }

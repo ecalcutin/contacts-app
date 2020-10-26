@@ -8,11 +8,15 @@ type Phone {
 }
 
 type User {
-  id: Int!
+  _id: String!
   name: String
   phones: [Phone!]!
 }
 
 type Query {
   users: [User!]!
+}
+
+type Mutation {
+  createUser(name: String!): User!
 }
