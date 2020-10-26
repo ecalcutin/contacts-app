@@ -1,17 +1,9 @@
-import { Resolver, Query, Mutation, Args, ArgsType, Field, ID, InputType } from "@nestjs/graphql";
+import { Resolver, Query, Mutation, Args } from "@nestjs/graphql";
 import { ClientProxy, ClientProxyFactory, Transport } from "@nestjs/microservices";
-import { GraphQLList, GraphQLObjectType, GraphQLString } from "graphql";
 
+import { CreateUserDto, UpdateUserDto } from "../dto/";
 import { User } from "../models/user.model";
 
-
-@InputType()
-class UserDto {
-    @Field()
-    name: String;
-    @Field(type => [String])
-    phones: String[]
-}
 
 @Resolver(of => User)
 export class UserResolver {
@@ -32,25 +24,17 @@ export class UserResolver {
     }
 
     @Mutation(returns => User)
-    async createUser(
-        @Args('name') name: String,
-        @Args('phones', { type: () => [String] }) phones: String[]
-    ) {
-        return await this.userMicroservice.send<User>({ cmd: 'createUser' }, { name, phones }).toPromise();
+    async createUser(@Args('userDto') userData: CreateUserDto) {
+        return await this.userMicroservice.send<User>({ cmd: 'createUser' }, { userData }).toPromise();
     }
 
     @Mutation(returns => User)
-    async updateUser(
-        @Args('_id') _id: String,
-        @Args('userDto') userData: UserDto
-    ) {
+    async updateUser(@Args('_id') _id: String, @Args('userDto') userData: UpdateUserDto) {
         return await this.userMicroservice.send<User>({ cmd: 'updateUser' }, { _id, ...userData }).toPromise();
     }
 
     @Mutation(returns => User)
-    async removeUser(
-        @Args('_id') _id: String
-    ) {
+    async removeUser(@Args('_id') _id: String) {
         return await this.userMicroservice.send<User>({ cmd: 'deleteUser' }, { _id }).toPromise()
     }
 
