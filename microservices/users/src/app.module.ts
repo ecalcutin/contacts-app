@@ -1,11 +1,10 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-
-import { UsersModule } from './users/users.module';
+import { MongooseModule } from '@nestjs/mongoose';
 
 import { ENV_SCHEMA } from './env.schema';
-import { MongooseModule } from '@nestjs/mongoose';
-import { async } from 'rxjs';
+
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
