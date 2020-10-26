@@ -16,14 +16,12 @@ export class UsersController {
     }
 
     @MessagePattern({ cmd: 'createUser' })
-    async createUser(data): Promise<UserModel> {
-        const { name, phones } = data;
-        console.log(data)
+    async createUser(data: User): Promise<UserModel> {
         return await this.userService.createUser(data);
     }
 
     @MessagePattern({ cmd: 'updateUser' })
-    async updateUser(data): Promise<UserModel> {
+    async updateUser(data: UserModel): Promise<UserModel> {
         const { _id, ...userData } = data;
         return await this.userService.updateUser(_id, userData)
     }

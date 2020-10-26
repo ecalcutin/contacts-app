@@ -9,9 +9,7 @@ import { UserRef } from "./schemas";
 
 @Injectable()
 export class UsersService {
-    constructor(@InjectModel(UserRef) private readonly userModel: Model<UserModel>) {
-
-    }
+    constructor(@InjectModel(UserRef) private readonly userModel: Model<UserModel>) { }
 
     async createUser(userData: User): Promise<UserModel> {
         return await new this.userModel(userData).save()
