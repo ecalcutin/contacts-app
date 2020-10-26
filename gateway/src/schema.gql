@@ -2,15 +2,10 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type Phone {
-  id: Int!
-  value: String!
-}
-
 type User {
   _id: String!
   name: String
-  phones: [Phone!]!
+  phones: [String!]!
 }
 
 type Query {
@@ -18,5 +13,12 @@ type Query {
 }
 
 type Mutation {
-  createUser(name: String!): User!
+  createUser(phones: [String!]!, name: String!): User!
+  updateUser(userDto: UserDto!, _id: String!): User!
+  removeUser(_id: String!): User!
+}
+
+input UserDto {
+  name: String!
+  phones: [String!]!
 }

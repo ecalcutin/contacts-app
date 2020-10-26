@@ -1,7 +1,5 @@
 import { Schema } from 'mongoose';
 
-import { PhoneRef } from './phone.schema';
-
 export const UserRef = 'Users';
 
 export const UserSchema = new Schema({
@@ -11,8 +9,7 @@ export const UserSchema = new Schema({
         required: true
     },
     phones: {
-        type: [Schema.Types.ObjectId],
-        ref: PhoneRef,
+        type: [String],
         default: []
     }
 }, {

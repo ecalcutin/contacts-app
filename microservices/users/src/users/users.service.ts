@@ -13,11 +13,23 @@ export class UsersService {
 
     }
 
-    async createUser(user: User): Promise<UserModel> {
-        return await new this.userModel(user).save()
+    async createUser(userData: User): Promise<UserModel> {
+        return await new this.userModel(userData).save()
     }
 
     async getUsers(): Promise<UserModel[]> {
         return await this.userModel.find().exec();
+    }
+
+    async updateUser(_id: string, userData: User): Promise<UserModel> {
+        const $updated = await this.userModel.findByIdAndUpdate(_id, {
+            name: userData.name,
+            phones: userData.phones
+        }, { new: true }).exec();
+        return $updated;
+    }
+
+    async deleteUser(_id: string): Promise<UserModel> {
+        return await this.userModel.findByIdAndRemove(_id).exec();
     }
 }
