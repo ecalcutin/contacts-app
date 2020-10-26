@@ -8,7 +8,7 @@ import { ENV_SCHEMA } from './env.schema';
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath: [],
+      envFilePath: ['.example.env'],
       expandVariables: true,
       validationSchema: ENV_SCHEMA,
       validationOptions: {
