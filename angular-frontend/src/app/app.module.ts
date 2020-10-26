@@ -13,13 +13,15 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { AddContactComponent } from './shared/components/add-contact/add-contact.component';
 // Pages
-
+import { ContactsComponent } from './pages/contacts/contacts.component';
+import { PopularComponent } from './pages/popular/popular.component';
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     AddContactComponent,
-    
+    ContactsComponent,
+    PopularComponent
   ],
   imports: [
     BrowserModule,
